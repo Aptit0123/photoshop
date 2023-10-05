@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Images</title>
+  <link rel="stylesheet" href="file.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+  <!--ICONS-->
+  <script src="https://kit.fontawesome.com/29485d9027.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+  
+</head>
+
+<body>
+  <div class="container-fluid fixed">
+    <div class="container">
+      <nav class="navbar navbar-expand-sm navbar-white navbar-transition fixed-top" style="top:10; width:100%;margin:auto;background-color:white;padding-right:30px;">
+
+        <div class="container-fluid" style="width:80%;height:60px">
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar" >
+                <ul class="navbar-nav ms-auto " >
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-link" href="service.html">Service<span class="caret-down-icon"></span></a>
+                        <ul class="dropdown-menu">
+                          
+                            <li><a href="newborn.html">Newborn Photo Session</a></li>
+                            <li><a href="birthdayshoot.html">Birthday Photo Session</a></li>
+                            <li><a href="babyphoto.html">Baby Photo Session</a></li>
+                            <li><a href="sitterphoto.html">Sitter Photo Session</a></li>
+                            <li class="back-button"><a href="portfolio.html">More</a></li>
+                        </ul>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;
+                   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-link" href="portfolio.html">Portfolio<span class="caret-down-icon"></span></a>
+
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="newborn.html">Newborn Photo Session</a></li>
+                            <li><a href="birthdayshoot.html">Birthday Photo Session</a></li>
+                            <li><a href="babyphoto.html">Baby Photo Session</a></li>
+                            <li><a href="sitterphoto.html">Sitter Photo Session</a></li>
+                            <li class="back-button"><a href="portfolio.html">More</a></li>
+                        </ul>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html">Pricing</a>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <a class="navbar-brand" href="javascript:void(0)">
+                        <img src="images/Logo web.png" class="img-fluid" alt="logo" style="width: 200px;">
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">ABOUT&nbsp;DOB</a>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">CONTACT US</a>
+                    </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item">
+                        <a class="nav-link" href="stories.html">Stories</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+</div>
+</div>
+</div>
+    
+</div>
+</div>
+</div>
+    </div>
+</div>
+
+
+
+<div id="storyDetails">
+  <h3 id="title"></h3>
+</div>
+
+<div class="container">
+  <p id="subtitle"></p>
+</div>
+
+
+<div id="imagesContainer"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const storyId = urlParams.get('id');
+
+    // Fetch the image for the story and set it as the src of the image element
+    fetch(`http://65.0.5.157:8080/api/photos/photos/${storyId}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch story data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Assuming the response is a base64-encoded image data
+        const imageData = new Uint8Array(data[0].image.data); // Assuming the image data is in the first element
+
+        // Convert Uint8Array to a Base64-encoded string
+        const base64Image = arrayBufferToBase64(imageData);
+
+        // Create an image element
+        const img = document.createElement('img');
+
+        // Configure the image element
+        img.src = `data:image/png;base64,${base64Image}`;
+        img.alt = 'Story Image';
+        img.classList.add('image');
+        img.setAttribute('width', '100%');
+
+        // Append the image element to the container
+        const imagesContainer = document.getElementById('imagesContainer');
+        imagesContainer.appendChild(img);
+      })
+      .catch(error => {
+        console.error('Error:', error.message);
+      });
+
+    // Function to convert ArrayBuffer to Base64
+    function arrayBufferToBase64(buffer) {
+      const binary = new Uint8Array(buffer);
+      let result = '';
+      binary.forEach(byte => {
+        result += String.fromCharCode(byte);
+      });
+      return btoa(result);
+    }
+
+  // Fetch the story details and populate title and subtitle
+  fetch(`http://65.0.5.157:8080/api/stories/stories/${storyId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch story data');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const titleElement = document.getElementById('title');
+      const subtitleElement = document.getElementById('subtitle');
+
+      titleElement.textContent = data.title;     // Assuming the API response has a "title" property
+      subtitleElement.textContent = data.subtitle; // Assuming the API response has a "subtitle" property
+    })
+    .catch(error => {
+      console.error('Error:', error.message);
+    });
+</script>
+</body>
+</html>
