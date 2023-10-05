@@ -133,7 +133,7 @@
           event.preventDefault();
       
           // Check the number of existing stories (rows) before submitting
-          fetch('npm start')
+          fetch('http://52.66.68.229/api/stories/stories')
             .then(response => {
               if (!response.ok) {
                 throw new Error('Failed to fetch stories data');
@@ -142,7 +142,7 @@
             })
             .then(data => {
               if (data.length >= MAX_STORY_COUNT) {
-                // Display a SweetAlert warning message when the user tries to store more than 5 rows
+                // Display a SweetAlert warning message when the user tries to store more than 5 stories
                 Swal.fire({
                   title: 'Warning',
                   text: 'You can only store up to 5 stories. Please delete some stories to make space for new ones.',
@@ -153,9 +153,10 @@
                 const formData = new FormData(storyForm);
       
                 fetch('http://52.66.68.229/api/stories/stories', {
-                  method: 'POST',
-                  body: formData,
-                })
+  method: 'POST',
+  body: formData,
+})
+
                   .then((response) => {
                     storyForm.reset();
                     if (response.ok) {
@@ -185,6 +186,7 @@
             });
         });
       </script>
+      
       
 
 
@@ -445,7 +447,7 @@
     event.preventDefault();
     
     // Check the number of existing images before submitting
-    fetch('http://3.108.238.35:80/api/images/images')
+    fetch('http://52.66.68.229/api/images/images')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch images data');
@@ -464,7 +466,7 @@
           // If the image count is less than 4, proceed with the submission
           const formData = new FormData(imageForm);
 
-          fetch('http://3.108.238.35:80/api/images/images', {
+          fetch('http://52.66.68.229/api/images/images', {
             method: 'POST',
             body: formData,
           })
@@ -832,6 +834,8 @@ fetchImages();
   </div>
 </section>
 
+
+
 <script>
   function fetchAndPopulateStoriesList() {
     fetch('http://52.66.68.229/api/stories/stories')
@@ -926,6 +930,8 @@ fetchImages();
     </form>
   </div>
 </div>
+
+
 
 <script>
   function openEditModal(entryId) {
@@ -1259,11 +1265,6 @@ document.getElementById('pricingForm').addEventListener('submit', function(event
 
 
 
-
-
- 
-
-
   <script>
     function loadContent(contentType) {
       var mainContent = document.getElementById("main-content");
@@ -1454,6 +1455,8 @@ document.getElementById('pricingForm').addEventListener('submit', function(event
     }
   });
 </script>
+
+
  <script>
  // to delete pricing
    function deletePricingEntry(id) {
