@@ -172,7 +172,7 @@
   // Function to fetch images from the server and populate the dynamic carousel
   function fetchAndPopulateImages() {
     // Make a GET request to your backend's /images endpoint
-    fetch('http://52.66.68.229:3000/api/images/images')
+    fetch('https://103.186.184.49:3000/api/images/images')
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch images');
@@ -247,7 +247,7 @@
     // Function to fetch images from the server
     function fetchImages() {
         // Make a GET request to your backend's /images endpoint
-        fetch('http://52.66.68.229:3000/api/images/images')
+        fetch('https://103.186.184.49:3000/api/images/images')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch images');

@@ -32,7 +32,7 @@ function startServer() {
 
   app.use(express.json());
   const corsOptions = {
-    origin: 'http://52.66.68.229:3000', // Replace with your allowed origin(s)
+    origin: 'https://103.186.184.49:3000', // Replace with your allowed origin(s)
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 204,
   };
