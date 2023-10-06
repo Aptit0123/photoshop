@@ -1,7 +1,7 @@
 
     function fetchImages() {
       // Make a GET request to your backend's /images endpoint
-      fetch('https://103.186.184.49:3000/api/images/images')
+      fetch('https://65.0.5.157:8080/api/images/images')
         .then(response => {
           if (!response.ok) {
             throw new Error('Failed to fetch images');
@@ -69,7 +69,7 @@
                 tableRow.remove();
 
                 // Send a DELETE request to your backend to delete the image based on imageId
-                fetch(`https://103.186.184.49:3000/api/images/images/${imageId}`, {
+                fetch(`https://65.0.5.157:8080/api/images/images/${imageId}`, {
   method: 'DELETE'
 })
 
@@ -130,7 +130,7 @@ imageForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
   // Check the number of existing images before submitting
-  fetch('https://103.186.184.49:3000/api/images/images')
+  fetch('https://65.0.5.157:8080/api/images/images')
     .then((response) => {
       if (!response.ok) {
         throw new Error('Failed to fetch images data');
@@ -149,7 +149,7 @@ imageForm.addEventListener('submit', (event) => {
         // If the image count is less than 4, proceed with the submission
         const formData = new FormData(imageForm);
 
-        fetch('https://103.186.184.49:3000/api/images/images', {
+        fetch('https://65.0.5.157:8080/api/images/images', {
           method: 'POST',
           body: formData,
         })
@@ -202,7 +202,7 @@ let appointmentData = [];
 let startingSerialNumber = 1;
 
 function fetchAndPopulateAppointmentTable(page) {
-  fetch('https://103.186.184.49:3000/api/appointment/appointments')
+  fetch('https://65.0.5.157:8080/api/appointment/appointments')
     .then(response => response.json())
     .then(data => {
       appointmentData = data;
@@ -272,7 +272,7 @@ fetchAndPopulateAppointmentTable(currentAppointmentPage);
   let startingSerialNumberr = 1; // Initialize the starting serial number
 
   function fetchContacts() {
-    fetch('https://103.186.184.49:3000/api/contactus/contacts')
+    fetch('https://65.0.5.157:8080/api/contactus/contacts')
       .then(response => response.json())
       .then(responseData => {
         data = responseData;
@@ -355,7 +355,7 @@ fetchAndPopulateAppointmentTable(currentAppointmentPage);
 
     const formData = new FormData(pricingForm);
 
-    fetch('https://103.186.184.49:3000/api/pricing/pricing', {
+    fetch('https://65.0.5.157:8080/api/pricing/pricing', {
       method: 'POST',
       body: formData,
     })
@@ -389,7 +389,7 @@ fetchAndPopulateAppointmentTable(currentAppointmentPage);
     const editModal = document.getElementById('editModal');
     editModal.style.display = 'block';
  
-    fetch(`https://103.186.184.49:3000/api/pricing/pricings/${entryId}`)
+    fetch(`https://65.0.5.157:8080/api/pricing/pricings/${entryId}`)
       .then(response => response.json())
       .then(pricingEntry => {
         // Populate form fields with the retrieved data
@@ -425,7 +425,7 @@ document.getElementById('pricingForm').addEventListener('submit', function(event
     
     const entryId = document.getElementById('editEntryId').value; // Retrieve entryId from the hidden input field
 
-    fetch(`https://103.186.184.49:3000/api/pricing/pricing/${entryId}`, {
+    fetch(`https://65.0.5.157:8080/api/pricing/pricing/${entryId}`, {
       method: 'PUT',
       body: formData,
     })
@@ -473,7 +473,7 @@ document.getElementById('pricingForm').addEventListener('submit', function(event
 
     formData.append('sid', sid);
 
-    fetch(`https://103.186.184.49:3000/api/photos/photos/${sid}`, {
+    fetch(`https://65.0.5.157:8080/api/photos/photos/${sid}`, {
       method: 'POST',
       body: formData,
     })
@@ -501,7 +501,7 @@ document.getElementById('pricingForm').addEventListener('submit', function(event
 // Function to open the edit form and populate it with data
 function openStoriesModal(storyId) {
     // Fetch the story data for the selected storyId
-    fetch(`https://103.186.184.49:3000/api/stories/${storyId}`)
+    fetch(`https://65.0.5.157:8080/api/stories/${storyId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to fetch story data');
@@ -533,7 +533,7 @@ function openStoriesModal(storyId) {
     const storyId = formData.get('sid');
   
     // Send a PUT request to update the story
-    fetch(`https://103.186.184.49:3000/api/stories/${storyId}`, {
+    fetch(`https://65.0.5.157:8080/api/stories/${storyId}`, {
       method: 'PUT',
       body: formData,
     })
@@ -584,7 +584,7 @@ function openStoriesModal(storyId) {
       }).then((willUpdate) => {
           if (willUpdate) {
               // Make the PUT request
-              fetch(`https://103.186.184.49:3000/api/pricing/pricing/${entryId}`, {
+              fetch(`https://65.0.5.157:8080/api/pricing/pricing/${entryId}`, {
                   method: 'PUT',
                   body: formData,
               })
@@ -625,7 +625,7 @@ function deleteAppointmentEntry(id) {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`https://103.186.184.49:3000/api/appointment/appointment/${id}`, {
+      fetch(`https://65.0.5.157:8080/api/appointment/appointment/${id}`, {
         method: 'DELETE',
       })
         .then((response) => {
@@ -685,7 +685,7 @@ function deleteAppointmentEntry(id) {
    }).then((result) => {
      if (result.isConfirmed) {
        // User confirmed, proceed with deletion
-       fetch(`https://103.186.184.49:3000/api/contact us/contact/${id}`, {
+       fetch(`https://65.0.5.157:8080/api/contact us/contact/${id}`, {
          method: 'DELETE',
        })
          .then((response) => {
@@ -732,7 +732,7 @@ function deleteAppointmentEntry(id) {
    }).then((result) => {
      if (result.isConfirmed) {
        // User confirmed, proceed with deletion
-       const url = `https://103.186.184.49:3000/api/pricing/pricing/${id}`;
+       const url = `https://65.0.5.157:8080/api/pricing/pricing/${id}`;
        const method = 'DELETE';
  
        fetch(url, {
@@ -775,7 +775,7 @@ function deleteAppointmentEntry(id) {
      }).then((result) => {
        if (result.isConfirmed) {
          // User confirmed, proceed with deletion
-         fetch(`https://103.186.184.49:3000/api/stories/stories/${id}`, {
+         fetch(`https://65.0.5.157:8080/api/stories/stories/${id}`, {
            method: 'DELETE',
          })
            .then((response) => {

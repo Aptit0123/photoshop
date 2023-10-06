@@ -13,10 +13,10 @@ const imagesRoutes = require('./images');
 const mysql = require("mysql2");
 
 const connection = mysql.createConnection({
-  host: "database-1.ce8foznoiqpc.ap-south-1.rds.amazonaws.com",
-  user: "admin2", // Replace with your MySQL username
-  password: "E9Api3PfkYpFriIsAHa7", // Replace with your MySQL password
-  database: "testingDb",
+  host: "database-2.ce8foznoiqpc.ap-south-1.rds.amazonaws.com",
+  user: "admin", // Replace with your MySQL username
+  password: "T84qUhL1PMbujNsBmnDx", // Replace with your MySQL password
+  database: "photo",
 });
 
 function startServer() {
@@ -32,7 +32,7 @@ function startServer() {
 
   app.use(express.json());
   const corsOptions = {
-    origin: 'https://103.186.184.49:3000', // Replace with your allowed origin(s)
+    origin: 'https://65.0.5.157:8080', // Replace with your allowed origin(s)
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     optionsSuccessStatus: 204,
   };

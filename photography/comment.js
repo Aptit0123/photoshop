@@ -4,10 +4,10 @@ const mysql = require("mysql2");
 
 // Replace with your MySQL connection details
 const connection = mysql.createConnection({
-  host: "database-1.ce8foznoiqpc.ap-south-1.rds.amazonaws.com",
-  user: "admin2", // Replace with your MySQL username
-  password: "E9Api3PfkYpFriIsAHa7", // Replace with your MySQL password
-  database: "testingDb",
+  host: "database-2.ce8foznoiqpc.ap-south-1.rds.amazonaws.com",
+  user: "admin", // Replace with your MySQL username
+  password: "T84qUhL1PMbujNsBmnDx", // Replace with your MySQL password
+  database: "photo",
 });
 
 // Get all comments
